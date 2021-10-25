@@ -27,8 +27,7 @@
                                 <div class="card-header">
                                     <h1 class="card-title">Sản Phẩm</h1>
                                     <div class="card-tools">
-                                        <input type="submit" value="Thêm sản phẩm" class="btn btn-success ">
-                                        <a href="{{ route('show_product') }}" class="btn btn-secondary">Thoát</a>
+
                                         <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                             title="Collapse">
                                             <i class="fas fa-minus"></i>
@@ -37,7 +36,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
@@ -45,8 +44,6 @@
                                                     <input type="text" id="name" name='name' class="form-control"
                                                         placeholder="Nhập tên sản phẩm...">
                                                 </div>
-
-
 
                                                 <div class="form-group">
                                                     <label for="inputName">Giá sản phẩm : </label>
@@ -56,11 +53,11 @@
 
                                                 <div class="form-group">
                                                     <label>Ảnh đại diện sản phẩm</label>
-                                                    <input required id="feature_image_path" type="file"
+                                                    <input  id="feature_image_path" type="file"
                                                         name="feature_image_path" class="form-control-file"
                                                         onchange="changeImg(this)">
                                                     <img id="avatar" class="thumbnail" width="200px"
-                                                        src="{{ asset('Image/imgdefault.png') }}">
+                                                        src="{{ asset('Adminlte/dist/img/default-150x150.png') }}">
                                                 </div>
 
                                                 <div class="form-group">
@@ -70,13 +67,6 @@
                                                         {!! $htmlOption !!}
                                                     </select>
                                                 </div>
-
-
-
-
-
-
-
                                             </div>
 
                                             <div class="col-sm-6">
@@ -94,15 +84,17 @@
 
                                                 <div class="form-group">
                                                     <label>Ảnh chi tiết sản phẩm</label>
-                                                    <input required type="file" multiple class="form-control-file"
+                                                    <input  type="file" multiple class="form-control-file"
                                                         name="image_path[]">
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label>Mô tả sản phẩm :</label>
-                                                    <textarea  class="form-control tinymce_editor" name="content"></textarea>
+                                                    <textarea class="form-control tinymce_editor" name="content"></textarea>
                                                 </div>
+                                                <input type="submit" value="Thêm sản phẩm" class="btn btn-success ">
+                                                <a href="{{ route('show_product') }}" class="btn btn-secondary">Thoát</a>
                                             </div>
 
                                             @csrf

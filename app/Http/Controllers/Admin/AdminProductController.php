@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Traits\StorageImageTrail;
 use App\Components\Recusive;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Traits\StorageImageTrait;
 use Illuminate\Http\Request;
 
 class AdminProductController extends Controller
 {
+    use StorageImageTrait;
     private $category;
     public function __construct(Category $category)
     {
@@ -33,15 +36,14 @@ class AdminProductController extends Controller
         $htmlOption = $recusive -> categoryRecusive($parentId);
         return $htmlOption;
     }
-    // public function store(Request $request)
-    // {
-    //     $this->category->create([
-    //         'name' => $request -> name,
-    //         'parent_id' => $request -> parent_id,
-    //         'slug' => str::slug($request -> name)
-    //     ]);
-    //     return redirect()->route('show_category');
-    // }
+
+    public function store(Request $request)
+    {
+        $dataUpload = $this->storageTraitUpload($request, 'feature_image_path','product');
+        dd($dataUpload);
+        // return redirect()->route('show_product');
+
+    }
 
     // public function getCategory($parentId)
     // {
