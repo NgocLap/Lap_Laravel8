@@ -62,7 +62,7 @@
 
                                                 <div class="form-group">
                                                     <label>Danh Mục Sản Phẩm : </label>
-                                                    <select class="form-control select2_init" name="parent_id">
+                                                    <select class="form-control select2_init" name="category_id">
                                                         <option value="">Chọn Danh Mục Sản Phẩm : </option>
                                                         {!! $htmlOption !!}
                                                     </select>
