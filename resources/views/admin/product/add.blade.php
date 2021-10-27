@@ -9,7 +9,6 @@
     <link href="{{ asset('dist/product/add/add.css') }}" rel="stylesheet" />
 @endsection
 
-
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -122,7 +121,6 @@
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="{{ asset('css_js/select2/select2.min.js') }}"></script>
     <script src="{{ asset('dist/product/add/add.js') }}"></script>
-
 @endsection
 
 @endsection

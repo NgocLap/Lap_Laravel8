@@ -88,10 +88,10 @@ Route::prefix('admin')->group(function () {
         Route::get('/edit/{id}', [AdminProductController::class, 'edit'])
             ->name('edit_product');
 
-        // Route::post('/update/{id}',  [AdminProductController::class, 'update'])
-        //     ->name('update_product');
+        Route::post('/update/{id}',  [AdminProductController::class, 'update'])
+            ->name('update_product');
 
-        // Route::get('/delete/{id}',  [AdminProductController::class, 'delete'])
-        //     ->name('delete_product');
+        Route::get('/delete/{id}',  [AdminProductController::class, 'delete'])
+            ->name('delete_product');
     });
 });

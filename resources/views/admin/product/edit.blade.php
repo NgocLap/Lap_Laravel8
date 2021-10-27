@@ -36,7 +36,7 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="{{ route('store_product') }}" method="post"
+                                    <form action="{{ route('update_product',['id'=>$product->id]) }}" method="post"
                                         enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-sm-6">
@@ -81,7 +81,7 @@
                                                     <select name="tags[]" class="form-control tags_select_choose"
                                                         multiple="multiple">
                                                         @foreach($product->tags as $item)
-                                                            <option value="{{$item->id}}" selected >{{$item->name}}</option>
+                                                            <option value="{{$item->name}}" selected >{{$item->name}}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -100,6 +100,14 @@
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                {{-- <div class="form-group">
+                                                    <label>Ảnh đại diện sản phẩm</label>
+                                                    <input id="feature_image_path" type="file" name="feature_image_path"
+                                                        class="form-control-file" onchange="changeImg(this)">
+                                                    <img class="feature_image"  class="thumbnail" width="200px"
+                                                        src="{{ $product->feature_image_path }}">
+                                                </div> --}}
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group">

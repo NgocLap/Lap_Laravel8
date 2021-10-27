@@ -4,6 +4,7 @@
     <title>Sản Phẩm</title>
 @endsection
 
+
 @section('content')
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -53,17 +54,16 @@
 
                                                 <td>{{ optional($item->category)->name }}</td>
 
-
                                                 <td class="text-right py-0 align-middle">
                                                     <div class="btn-group btn-group-sm">
                                                         <a href="{{ route('edit_product', ['id' => $item->id]) }}"
                                                             class="btn btn-info">
                                                             <i class="fas fa-pencil-alt"></i> Chỉnh Sửa</a>
                                                         &ensp;
-                                                        <a href="{{ route('edit_product', ['id' => $item->id]) }}"
-                                                            class="btn btn-danger"
-                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa {{ $item->name }} !')">
+                                                        <a href="" data-url="{{route('delete_product',['id'=>$item->id])}}"
+                                                            class="btn btn-danger action_delete">
                                                             <i class="fas fa-trash"></i> Xóa</a>
+                                                        {{-- onclick="return confirm('Bạn có chắc chắn muốn xóa {{ $item->name }} !')" --}}
                                                     </div>
                                                 </td>
                                             </tr>
@@ -113,4 +113,8 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+@section('js')
+    <script src="{{asset('css_js/sweetAlert2/sweetalert2@11.js')}}"></script>
+    <script src="{{ asset('dist/product/show/list.js') }}"></script>
+@endsection
 @endsection
