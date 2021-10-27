@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\MenuController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\SliderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -93,5 +94,27 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/delete/{id}',  [AdminProductController::class, 'delete'])
             ->name('delete_product');
+    });
+
+    //Route slider
+    Route::prefix('slider')->group(function () {
+
+        Route::get('/',  [SliderController::class, 'show'])
+            ->name('show_slider');
+
+        Route::get('/create', [SliderController::class, 'create'])
+            ->name('create_slider');
+
+        Route::post('/store', [SliderController::class, 'store'])
+            ->name('store_slider');
+
+        Route::get('/edit/{id}', [SliderController::class, 'edit'])
+            ->name('edit_slider');
+
+        Route::post('/update/{id}',  [SliderController::class, 'update'])
+            ->name('update_slider');
+
+        Route::get('/delete/{id}',  [SliderController::class, 'delete'])
+            ->name('delete_slider');
     });
 });

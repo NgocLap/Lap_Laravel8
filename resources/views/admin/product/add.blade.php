@@ -14,9 +14,18 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         @include('partials.content-header',['name' => 'Product', 'key' => 'Add'])
-        <!-- /.content-header -->
+        {{-- <div class="col-md-12">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </div> --}}
 
-        <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
                 <section class="content">
@@ -35,62 +44,90 @@
                                 </div>
 
                                 <div class="card-body">
-                                    <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data">
+                                    <form action="{{ route('store_product') }}" method="post"
+                                        enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="inputName">Tên sản phẩm : </label>
-                                                    <input type="text" id="name" name='name' class="form-control"
-                                                        placeholder="Nhập tên sản phẩm...">
+                                                    <input type="text" id="name" name='name'
+                                                        class="form-control @error('name') is-invalid @enderror"
+                                                        placeholder="Nhập tên sản phẩm..." value="{{old('name')}}">
+                                                    @error('name')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="inputName">Giá sản phẩm : </label>
-                                                    <input type="text" id="price" name='price' class="form-control"
-                                                        placeholder="Nhập giá sản phẩm...">
+                                                    <input type="text" id="price" name='price'
+                                                        class="form-control @error('price') is-invalid @enderror"
+                                                        placeholder="Nhập giá sản phẩm..." value="{{old('price')}}">
+                                                    @error('price')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Ảnh đại diện sản phẩm</label>
-                                                    <input  id="feature_image_path" type="file"
-                                                        name="feature_image_path" class="form-control-file"
+                                                    <input id="feature_image_path" type="file" name="feature_image_path"
+                                                        class="form-control @error('feature_image_path') is-invalid @enderror"
                                                         onchange="changeImg(this)">
                                                     <img id="avatar" class="thumbnail" width="200px"
                                                         src="{{ asset('Adminlte/dist/img/default-150x150.png') }}">
+                                                    @error('feature_image_path')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Danh Mục Sản Phẩm : </label>
-                                                    <select class="form-control select2_init" name="category_id">
+                                                    <select
+                                                        class="form-control select2_init  @error('category_id ') is-invalid @enderror"
+                                                        name="category_id">
                                                         <option value="">Chọn Danh Mục Sản Phẩm : </option>
                                                         {!! $htmlOption !!}
                                                     </select>
+                                                    @error('category_id')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                             </div>
 
                                             <div class="col-sm-6">
                                                 <div class="form-group">
                                                     <label for="inputName">Slug Sản Phẩm : </label>
-                                                    <input type="text" id="slug" name='slug' class="form-control">
+                                                    <input type="text" id="slug" name='slug' class="form-control" value="{{old('slug')}}">
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Tag Sản Phẩm : </label>
-                                                    <select name="tags[]" class="form-control tags_select_choose"
-                                                        multiple="multiple">
+                                                    <select name="tags[]"
+                                                        class="form-control tags_select_choose @error('tags') is-invalid @enderror"
+                                                        multiple="multiple" >
                                                     </select>
+                                                    @error('tags')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label>Ảnh chi tiết sản phẩm</label>
-                                                    <input  type="file" multiple class="form-control-file"
-                                                        name="image_path[]">
+                                                    <input type="file" multiple class="form-control-file"
+                                                        name="image_path[]" >
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label>Mô tả sản phẩm :</label>
-                                                    <textarea class="form-control tinymce_editor" name="content"></textarea>
+                                                    <textarea
+                                                        class="form-control tinymce_editor @error('content') is-invalid @enderror"
+                                                        name="content" >
+                                                        {{old('content')}}
+                                                    </textarea>
+                                                    @error('content')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
                                                 <input type="submit" value="Thêm sản phẩm" class="btn btn-success ">
                                                 <a href="{{ route('show_product') }}" class="btn btn-secondary">Thoát</a>
@@ -105,11 +142,7 @@
                             <!-- /.card -->
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-12">
 
-                        </div>
-                    </div>
                 </section>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

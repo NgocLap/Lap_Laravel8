@@ -59,7 +59,14 @@
                 <i class="nav-icon fas fa-chart-pie"></i>
                 <p>
                   Sản Phẩm
-
+                </p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('show_slider')}}" class="nav-link">
+                <i class="nav-icon fas fa-columns"></i>
+                <p>
+                  Slider
                 </p>
               </a>
           </li>

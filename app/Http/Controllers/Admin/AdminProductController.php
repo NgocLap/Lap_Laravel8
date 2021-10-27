@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Traits\StorageImageTrail;
+
 use App\Components\Recusive;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
@@ -56,7 +57,7 @@ class AdminProductController extends Controller
         return $htmlOption;
     }
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
         try {
             DB::beginTransaction();
@@ -100,7 +101,7 @@ class AdminProductController extends Controller
             return redirect()->route('show_product');
         } catch (Exception $exception) {
             DB::rollBack();
-            Log::error('Message : ' . $exception->getMessage() . '-----Line :' . $exception->getLine());
+            Log::error('Lỗi : ' . $exception->getMessage() . '-----Line :' . $exception->getLine());
         }
     }
 
@@ -168,13 +169,13 @@ class AdminProductController extends Controller
             $this->product->find($id)->delete();
             return response()->json([
                 'code' => 200,
-                'message' => 'success'
+                'message' => 'Xóa Thành Công'
             ],  200);
         }catch(\Exception $exception){
-            Log::error('Message : ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
+            Log::error('Lỗi : ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
             return response()->json([
                 'code' => 500,
-                'message' => 'fail'
+                'message' => 'Xóa Thất Bại'
             ],  500);
         }
     }

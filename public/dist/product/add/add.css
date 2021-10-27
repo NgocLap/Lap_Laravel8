@@ -12,3 +12,7 @@
 .feature_image{
     margin-top: 10px;
 }
+.alert-danger{
+    margin-top: 10px;
+    padding:3px 5px
+}
