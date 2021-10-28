@@ -5,12 +5,12 @@ function actionDelete(event) {
     // alert(urlRequest);
     Swal.fire({
         title: "Bạn có chắc?",
-        text: "Muốn xóa Slider này!",
+        text: "Muốn xóa User này!",
         icon: "warning",
         showCancelButton: true ,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Chắc chắn, xóa Slider này!",
+        confirmButtonText: "Chắc chắn, xóa User này!",
         cancelButtonText: "Thoát",
 
     }).then((result) => {
@@ -21,7 +21,7 @@ function actionDelete(event) {
                 success:function(data){
                     if(data.code == 200){
                         that.parent().parent().parent().remove();
-                        Swal.fire("Xóa Thành Công!", "Sản phẩm đã được xóa.", "success");
+                        Swal.fire("Xóa Thành Công!", "User đã được xóa.", "success");
                     }
                 },
                 error: function(){

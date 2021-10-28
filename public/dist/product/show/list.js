@@ -11,7 +11,7 @@ function actionDelete(event) {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Chắc chắn, xóa sản phẩm này!",
-
+        cancelButtonText: "Thoát",
     }).then((result) => {
         if (result.value) {
             $.ajax({

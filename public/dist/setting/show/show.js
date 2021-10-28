@@ -11,6 +11,7 @@ function actionDelete(event) {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Chắc chắn, xóa Setting này!",
+        cancelButtonText: "Thoát",
 
     }).then((result) => {
         if (result.value) {

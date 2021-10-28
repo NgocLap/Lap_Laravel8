@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminRoleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -139,5 +141,48 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/delete/{id}',  [SettingController::class, 'delete'])
             ->name('delete_setting');
+    });
+
+    //Route user
+    Route::prefix('user')->group(function () {
+
+        Route::get('/',  [AdminUserController::class, 'show'])
+            ->name('show_user');
+
+        Route::get('/create', [AdminUserController::class, 'create'])
+            ->name('create_user');
+
+        Route::post('/store', [AdminUserController::class, 'store'])
+            ->name('store_user');
+
+        Route::get('/edit/{id}', [AdminUserController::class, 'edit'])
+            ->name('edit_user');
+
+        Route::post('/update/{id}',  [AdminUserController::class, 'update'])
+            ->name('update_user');
+
+        Route::get('/delete/{id}',  [AdminUserController::class, 'delete'])
+            ->name('delete_user');
+    });
+
+    //Route role
+    Route::prefix('role')->group(function () {
+        Route::get('/',  [AdminRoleController::class, 'show'])
+            ->name('show_role');
+
+        Route::get('/create', [AdminRoleController::class, 'create'])
+            ->name('create_role');
+
+        Route::post('/store', [AdminRoleController::class, 'store'])
+            ->name('store_role');
+
+        Route::get('/edit/{id}', [AdminRoleController::class, 'edit'])
+            ->name('edit_role');
+
+        Route::post('/update/{id}',  [AdminRoleController::class, 'update'])
+            ->name('update_role');
+
+        Route::get('/delete/{id}',  [AdminRoleController::class, 'delete'])
+            ->name('delete_role');
     });
 });
