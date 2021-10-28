@@ -33,7 +33,7 @@ class SliderAddRequest extends FormRequest
     public function messages()
     {
         return[
-            'name.required'=>'Tên không được phép để trống',
+            'name.required'=>'Tên Slider không được phép để trống',
             'name.unique'=>'Tên Slider đã tồn tại, vui lòng nhập một tên khác',
             'description.required'=>'Mô tả không được phép để trống',
             'image_path.required'=>'Ảnh không được phép để trống',

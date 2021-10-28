@@ -70,6 +70,14 @@
                 </p>
               </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('show_setting')}}" class="nav-link">
+                <i class="nav-icon far fa-plus-square"></i>
+                <p>
+                  Setting
+                </p>
+              </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

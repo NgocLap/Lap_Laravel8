@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductTag;
 use App\Models\Tag;
+use App\Traits\DeleteModelTrait;
 use App\Traits\StorageImageTrait;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ use PhpParser\Node\Stmt\TryCatch;
 
 class AdminProductController extends Controller
 {
+    use DeleteModelTrait;
     use StorageImageTrait;
     private $category;
     private $product;
@@ -165,19 +167,7 @@ class AdminProductController extends Controller
 
     public function delete($id)
     {
-        try{
-            $this->product->find($id)->delete();
-            return response()->json([
-                'code' => 200,
-                'message' => 'Xóa Thành Công'
-            ],  200);
-        }catch(\Exception $exception){
-            Log::error('Lỗi : ' . $exception->getMessage() . ' --- Line : ' . $exception->getLine());
-            return response()->json([
-                'code' => 500,
-                'message' => 'Xóa Thất Bại'
-            ],  500);
-        }
+        return $this->deleteModelTrait($id, $this->product);
     }
 
 }
