@@ -70,11 +70,11 @@
                                             <label>Chọn vai trò User : </label>
                                             <select
                                                 class="form-control select2_init  @error('role_id ') is-invalid @enderror"
-                                                name="role_id[]" multiple>
-                                                <option value="">Chọn vai trò User : </option>
+                                                name="role_id[]" multiple="multiple">
+                                                <option value=""></option>
                                                 @foreach ($roles as $item)
                                                 <option
-                                                {{$roles->contains('id', $item->id) ? 'selected' : ''}}
+                                                {{$rolesOfUser->contains('id', $item->id) ? 'selected' : ''}}
                                                 value="{{$item->id}}">{{$item->name}} </option>
                                                 @endforeach
                                                 {{-- {!! $htmlOption !!} --}}

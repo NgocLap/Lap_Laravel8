@@ -55,11 +55,6 @@
                     <!-- /.card -->
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-
-                  </div>
-                </div>
               </section>
         <!-- /.row -->
       </div><!-- /.container-fluid -->

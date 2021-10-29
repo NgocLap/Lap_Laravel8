@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SliderController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminRoleController;
+use App\Http\Controllers\Admin\AdminPermissionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,8 @@ Route::prefix('admin')->group(function () {
     Route::prefix('categories')->group(function () {
 
         Route::get('/',  [CategoryController::class, 'show'])
-            ->name('show_category');
+            ->name('show_category')
+            ->middleware('can:category-list');
 
         Route::get('/create', [CategoryController::class, 'create'])
             ->name('create_category');
@@ -59,7 +61,8 @@ Route::prefix('admin')->group(function () {
     Route::prefix('menu')->group(function () {
 
         Route::get('/',  [MenuController::class, 'show'])
-            ->name('show_menu');
+            ->name('show_menu')
+            ->middleware('can:menu-list');
 
         Route::get('/create', [MenuController::class, 'create'])
             ->name('create_menu');
@@ -165,7 +168,7 @@ Route::prefix('admin')->group(function () {
             ->name('delete_user');
     });
 
-    //Route role
+    //Route permission
     Route::prefix('role')->group(function () {
         Route::get('/',  [AdminRoleController::class, 'show'])
             ->name('show_role');
@@ -184,5 +187,26 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/delete/{id}',  [AdminRoleController::class, 'delete'])
             ->name('delete_role');
+    });
+
+     //Route role
+     Route::prefix('permission')->group(function () {
+        // Route::get('/',  [AdminPermissionController::class, 'show'])
+        //     ->name('show_permission');
+
+        Route::get('/create', [AdminPermissionController::class, 'create'])
+            ->name('create_permission');
+
+        Route::post('/store', [AdminPermissionController::class, 'store'])
+            ->name('store_permission');
+
+        // Route::get('/edit/{id}', [AdminPermissionController::class, 'edit'])
+        //     ->name('edit_permission');
+
+        // Route::post('/update/{id}',  [AdminPermissionController::class, 'update'])
+        //     ->name('update_permission');
+
+        // Route::get('/delete/{id}',  [AdminPermissionController::class, 'delete'])
+        //     ->name('delete_permission');
     });
 });

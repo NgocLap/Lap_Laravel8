@@ -44,7 +44,7 @@
                                             <tr>
                                                 <td>{{ $item->id }}</td>
                                                 <td>{{ $item->name }}</td>
-                                                <td>{{ $item->display_name }}</td>
+                                                <td>{!! $item->display_name !!}</td>
 
                                                 <td class="text-right py-0 align-middle">
                                                     <div class="btn-group btn-group-sm">

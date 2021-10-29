@@ -17,7 +17,7 @@
                     alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block">{{Auth::user()->name}}</a>
             </div>
         </div>
 
@@ -93,6 +93,14 @@
                         <i class="nav-icon fas fa-table"></i>
                         <p>
                             Danh Sách Vai Trò
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('create_permission') }}" class="nav-link">
+                        <i class="nav-icon fas fa-book"></i>
+                        <p>
+                            Tạo Permission
                         </p>
                     </a>
                 </li>

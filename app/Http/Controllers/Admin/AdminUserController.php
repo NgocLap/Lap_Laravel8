@@ -57,10 +57,11 @@ class AdminUserController extends Controller
     {
         $roles = $this->role->all();
         $users = $this->user->find($id);
-        return view('admin.user.edit', compact('users','roles'));
+        $rolesOfUser = $users->roles;
+        return view('admin.user.edit', compact('users','roles','rolesOfUser'));
     }
 
-    public function update($id, Request $request)
+    public function update(Request $request, $id)
     {
         try{
             DB::beginTransaction();
@@ -69,8 +70,8 @@ class AdminUserController extends Controller
                 'email' =>$request->email,
                 'password'=>bcrypt($request->password),
             ]);
-            $users = $this->user->find($id);
-            $users->roles()->sync($request->role_id);
+            $user = $this->user->find($id);
+            $user->roles()->sync($request->role_id);
             DB::commit();
             return redirect()->route('show_user');
         }catch(Exception $exception){

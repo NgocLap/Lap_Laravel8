@@ -3,15 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Permission;
 use App\Models\Role;
 use Illuminate\Http\Request;
 
 class AdminRoleController extends Controller
 {
     private $role;
-    public function __construct(Role $role)
+    private $permission;
+    public function __construct(Role $role, Permission $permission)
     {
         $this->role = $role;
+        $this->permission = $permission;
     }
 
     public function show()
@@ -22,16 +25,39 @@ class AdminRoleController extends Controller
 
     public function create()
     {
-        return view ('admin.role.add');
+        $permissionParent = $this->permission->where('parent_id', 0)->get();
+        return view ('admin.role.add', compact('permissionParent'));
     }
 
-    // public function store(SettingRequest $request)
-    // {
-    //     $this->setting->create([
-    //         'config_key' => $request -> config_key,
-    //         'config_value' => $request -> config_value,
-    //         'type' => $request -> type,
-    //     ]);
-    //     return redirect()->route('show_setting');
-    // }
+    public function store(Request $request)
+    {
+        $role = $this->role->create([
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+        ]);
+        $role->permissions()->attach($request->permission_id);
+        return redirect()->route('show_role');
+    }
+
+    public function edit($id, Request $request)
+    {
+        $permissionParent = $this->permission->where('parent_id', 0)->get();
+        $role = $this->role->find($id);
+        $permissionsChecked = $role->permissions;
+        return view('admin.role.edit', compact('permissionParent','role','permissionsChecked'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $role = $this->role->find($id);
+        $role->update([
+            'name' => $request->name,
+            'display_name' => $request->display_name,
+        ]);
+
+        $role->permissions()->sync($request->permission_id);
+        return redirect()->route('show_role');
+    }
+
+    
 }

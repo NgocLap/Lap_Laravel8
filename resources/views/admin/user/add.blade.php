@@ -70,7 +70,7 @@
                                             <label>Chọn vai trò User : </label>
                                             <select
                                                 class="form-control select2_init  @error('role_id ') is-invalid @enderror"
-                                                name="role_id[]" multiple>
+                                                name="role_id[]" multiple="multiple">
                                                 <option value="">Chọn vai trò User : </option>
                                                 @foreach ($roles as $item)
                                                 <option value="{{$item->id}}">{{$item->name}} </option>
@@ -104,6 +104,6 @@
     {{-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> --}}
     <script src="{{ asset('css_js/select2/select2.min.js') }}"></script>
     <script src="{{ asset('dist/user/add/add.js') }}"></script>
-    
+
 @endsection
 @endsection

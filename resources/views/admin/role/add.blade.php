@@ -52,94 +52,73 @@
                                             <textarea
                                                 class="form-control tinymce_editor @error('display_name') is-invalid @enderror"
                                                 name="display_name" rows="10" cols="10">
-                                                            {{ old('display_name') }}
-                                                            </textarea>
+                                                    {{ old('display_name') }}
+                                                </textarea>
                                             @error('display_name')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
 
-                                        <div class="form-group">
-                                            <div class="card card-success">
-                                                <div class="card-header">
-                                                    <div class="icheck-primary d-inline">
-                                                        <input type="checkbox" id="checkboxPrimary3">
-                                                        <label for="checkboxPrimary3">
-                                                            Model User
-                                                        </label>
-                                                    </div>
-                                                    {{-- <div class="card-tools">
-                                                        <button type="button" class="btn btn-tool"
-                                                            data-card-widget="collapse"><i class="fas fa-minus"></i>
-                                                        </button>
-                                                    </div> --}}
+                                        <div class="card card-danger" data-type="permission-card">
+                                            <div class="card-header">
+                                                <div class="icheck-primary d-inline">
+                                                    <input type="checkbox" id="item-" value="" class="check_all">
+                                                    <label for="item-">
+                                                        Chọn Tất Cả
+                                                    </label>
                                                 </div>
-
-                                                <div class="row">
-                                                    <div class="col-sm-3">
-                                                        <div class="card-body">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="checkboxPrimary2">
-                                                                <label for="checkboxPrimary2">
-                                                                    Role
-                                                                </label>
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="col-sm-3">
-                                                        <div class="card-body">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="checkboxPrimary23">
-                                                                <label for="checkboxPrimary23">
-                                                                    Role
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-3">
-                                                        <div class="card-body">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="checkboxPrimary24">
-                                                                <label for="checkboxPrimary24">
-                                                                    Role
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-sm-3">
-                                                        <div class="card-body">
-                                                            <div class="icheck-primary d-inline">
-                                                                <input type="checkbox" id="checkboxPrimary25">
-                                                                <label for="checkboxPrimary25">
-                                                                    Role
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-
                                             </div>
                                         </div>
+                                        @foreach ($permissionParent as $permissionParentItem)
+                                            <div class="form-group">
+                                                <div class="card card-success" data-type="permission-card">
+                                                    <div class="card-header">
+                                                        <div class="icheck-primary d-inline">
+                                                            <input type="checkbox"
+                                                                id="item-{{ $permissionParentItem['id'] }}" value="" class="checkbox_wrapper">
+                                                            <label for="item-{{ $permissionParentItem['id'] }}">
+                                                                Bảng {{ $permissionParentItem->name }}
+                                                            </label>
+                                                        </div>
+                                                    </div>
 
-                                        @csrf
-                                        <input type="submit" value="Thêm Vai Trò" class="btn btn-success ">
-                                        <a href="{{ route('show_role') }}" class="btn btn-secondary">Thoát</a>
-                                    </form>
+                                                    <div class="row">
+                                                        @foreach ($permissionParentItem->permissionsChildrent as $permissionChildrentItem)
+                                                            <div class="col-sm-3">
+                                                                <div class="card-body">
+                                                                    <div class="icheck-primary d-inline">
+                                                                        <input name="permission_id[]" type="checkbox"
+                                                                            id="{{ $permissionParentItem['id'] . $permissionChildrentItem['id'] }}"
+                                                                            value="{{ $permissionChildrentItem->id }}" class="checkbox_childrent">
+                                                                        <label
+                                                                            for="{{ $permissionParentItem['id'] . $permissionChildrentItem['id'] }}">
+                                                                            {{ $permissionChildrentItem->name }}
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                 </div>
                             </div>
+
+                            @csrf
+                            <input type="submit" value="Thêm Vai Trò" class="btn btn-success ">
+                            <a href="{{ route('show_role') }}" class="btn btn-secondary">Thoát</a>
+                            </form>
                         </div>
                     </div>
-
-                </section>
-                <!-- /.row -->
-            </div><!-- /.container-fluid -->
+            </div>
         </div>
-        <!-- /.content -->
+
+        </section>
+        <!-- /.row -->
+    </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
 @section('js')
