@@ -20,12 +20,12 @@ use App\Http\Controllers\Admin\AdminPermissionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/admin', [AdminController::class, 'loginAdmin']);
-
 Route::post('/admin', [AdminController::class, 'postloginAdmin']);
 
 Route::get('/home', function () {
@@ -42,19 +42,22 @@ Route::prefix('admin')->group(function () {
             ->middleware('can:category-list');
 
         Route::get('/create', [CategoryController::class, 'create'])
-            ->name('create_category');
+            ->name('create_category')
+            ->middleware('can:category-add');
 
         Route::post('/store', [CategoryController::class, 'store'])
             ->name('store_category');
 
         Route::get('/edit/{id}', [CategoryController::class, 'edit'])
-            ->name('edit_category');
+            ->name('edit_category')
+            ->middleware('can:category-edit');
 
         Route::post('/update/{id}',  [CategoryController::class, 'update'])
             ->name('update_category');
 
         Route::get('/delete/{id}',  [CategoryController::class, 'delete'])
-            ->name('delete_category');
+            ->name('delete_category')
+            ->middleware('can:category-delete');
     });
 
     //Route menu
@@ -65,13 +68,15 @@ Route::prefix('admin')->group(function () {
             ->middleware('can:menu-list');
 
         Route::get('/create', [MenuController::class, 'create'])
-            ->name('create_menu');
+            ->name('create_menu')
+            ->middleware('can:menu-add');
 
         Route::post('/store', [MenuController::class, 'store'])
             ->name('store_menu');
 
         Route::get('/edit/{id}', [MenuController::class, 'edit'])
-            ->name('edit_menu');
+            ->name('edit_menu')
+            ->middleware('can:menu-edit');
 
         Route::post('/update/{id}',  [MenuController::class, 'update'])
             ->name('update_menu');
@@ -189,8 +194,8 @@ Route::prefix('admin')->group(function () {
             ->name('delete_role');
     });
 
-     //Route role
-     Route::prefix('permission')->group(function () {
+    //Route role
+    Route::prefix('permission')->group(function () {
         // Route::get('/',  [AdminPermissionController::class, 'show'])
         //     ->name('show_permission');
 

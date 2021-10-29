@@ -26,4 +26,10 @@ class AdminController extends Controller
             return redirect()->to('home');
         }
     }
+
+    public function getLogout(Request $request)
+    {
+        Auth::logout();
+        return redirect()->intended('login');
+    }
 }
