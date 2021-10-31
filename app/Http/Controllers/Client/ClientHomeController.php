@@ -16,6 +16,8 @@ class ClientHomeController extends Controller
         $categorys = Category::where('parent_id', 0)->get();
         $products = Product::latest()->take(6)->get();
         $productRecommend = Product::latest('views_count', 'desc')->take(12)->get();
-        return view('client.layout.home',compact('slider','categorys','products','productRecommend'));
+        $categorysLimit = Category::where('parent_id', 0)->take(3)->get();
+        return view('client.layout.home',compact('slider','categorys','products',
+        'productRecommend','categorysLimit'));
     }
 }

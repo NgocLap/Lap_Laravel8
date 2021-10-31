@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminPermissionController;
 
 use App\Http\Controllers\Client\ClientHomeController;
+use App\Http\Controllers\Client\ClientCategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,11 +23,6 @@ use App\Http\Controllers\Client\ClientHomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', [ClientHomeController::class, 'index']);
-
-
-
 
 
 Route::get('/admin', [AdminController::class, 'loginAdmin']);
@@ -219,3 +215,9 @@ Route::prefix('admin')->group(function () {
         //     ->name('delete_permission');
     });
 });
+
+Route::get('/', [ClientHomeController::class, 'index'])
+    ->name('homeClient');
+
+Route::get('/category/{slug}/{id}', [ClientCategoryController::class, 'index'])
+    ->name('listproduct');

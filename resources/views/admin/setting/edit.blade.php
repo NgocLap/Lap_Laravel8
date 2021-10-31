@@ -60,7 +60,7 @@
                                             <div class="form-group">
                                                 <label for="inputName">Config_value : </label>
                                                 <textarea
-                                                    class="form-control tinymce_editor @error('config_value') is-invalid @enderror"
+                                                    class="form-control  @error('config_value') is-invalid @enderror"
                                                     name="config_value" cols="30" rows="15">
                                                       {{ $settingEdit->config_value }}"
                                                     </textarea>
