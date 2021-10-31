@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminRoleController;
 use App\Http\Controllers\Admin\AdminPermissionController;
+
+use App\Http\Controllers\Client\ClientHomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,9 +23,11 @@ use App\Http\Controllers\Admin\AdminPermissionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ClientHomeController::class, 'index']);
+
+
+
+
 
 Route::get('/admin', [AdminController::class, 'loginAdmin']);
 Route::post('/admin', [AdminController::class, 'postloginAdmin']);

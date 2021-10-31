@@ -11,7 +11,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = ['name', 'price','slug','feature_image_path','feature_image_name',
-    'content','user_id','category_id'] ;
+    'content','user_id','category_id','views_count'] ;
 
     public function images(){
         return $this->hasMany(ProductImage::class, 'product_id');

@@ -91,6 +91,7 @@ class AdminProductController extends Controller
             }
 
             //Insert tags product
+            $tagIds = [];
             if (!empty($request->tags)) {
                 foreach ($request->tags as $tagItem) {
                     $tagInstance = $this->tag->firstOrCreate(['name' => $tagItem]);
@@ -148,6 +149,7 @@ class AdminProductController extends Controller
             }
 
             //Insert tags product
+            $tagIds = [];
             if (!empty($request->tags)) {
                 foreach ($request->tags as $tagItem) {
                     $tagInstance = $this->tag->firstOrCreate(['name' => $tagItem]);

@@ -115,6 +115,7 @@
                                                     <label>Ảnh chi tiết sản phẩm</label>
                                                     <input type="file" multiple class="form-control-file"
                                                         name="image_path[]" >
+                                                   
                                                 </div>
                                             </div>
                                             <div class="col-sm-12">
